@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application – Idyll Productions</title>
+  <meta name="description" content="Apply for a position at Idyll Productions. Join our growing team.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="https://res.cloudinary.com/dxd79mrse/image/upload/v1781445552/idyll-productions-orange_q6o4ap.png" type="image/png">
+</head>
+<body>
+
+  <!-- WebGL Particles Background -->
+  <div id="particles-bg"></div>
+
+  <!-- Stroke Decoration -->
+  <img src="https://res.cloudinary.com/dxd79mrse/image/upload/v1781416788/Stroke_surge6.png" alt="" class="stroke-decoration" aria-hidden="true">
+
+  <div class="main-container">
+
+    <!-- Header -->
+    <header class="form-header">
+      <a href="https://idyllproductions.com/" target="_blank" rel="noopener noreferrer">
+        <img src="https://res.cloudinary.com/dxd79mrse/image/upload/v1781445552/idyll-productions-orange_q6o4ap.png" alt="Idyll Productions" class="logo">
+      </a>
+      <div class="tagline">Hiring Portal</div>
+    </header>
+
+    
+    </div>
+
+    <!-- Form Card -->
+    <div class="form-card">
+      <form id="hiringForm" enctype="multipart/form-data" novalidate>
+
+        <!-- ==================== STEP 0: WELCOME ==================== -->
+        <div class="step-section welcome-section active" data-step="0">
+          <div class="welcome-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg> Now Hiring</div>
+          <h1>Become an <span>Idyll Creator</span></h1>
+          <p class="welcome-subtitle">Join our global network of creative talent. We're actively scouting UGC creators from around the world to partner with top brands. Submit your profile today, and we'll match you with the perfect campaign when the right opportunity arises.</p>
+
+          <button type="button" class="btn btn-primary btn-start" onclick="goToStep(1)">
+            Fill Form
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          
+          <div class="secondary-btns" style="margin-top: 24px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <button type="button" class="btn btn-secondary" style="padding: 10px 20px; font-size: 14px; display: inline-flex; align-items: center; gap: 8px;" onclick="document.getElementById('aboutDialog').showModal()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              About the Creator Network
+            </button>
+            <button type="button" class="btn btn-secondary" style="padding: 10px 20px; font-size: 14px; display: inline-flex; align-items: center; gap: 8px;" onclick="document.getElementById('contactDialog').showModal()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              Contact Our Team
+            </button>
+          </div>
+        </div>
+
+        <!-- ==================== STEP 1: FORM ==================== -->
+        <div class="step-section" data-step="1">
+          <h2 class="section-title">Tell us about yourself</h2>
+          <p class="section-subtitle">All fields marked with * are required.</p>
+
+          <div class="form-row">
+            <div class="form-group" id="group-fullName">
+              <label for="fullName">Full Name <span class="required">*</span></label>
+              <input type="text" id="fullName" name="fullName" placeholder="e.g. Priya Sharma" required>
+              <div class="error-msg">Please enter your full name</div>
+            </div>
+            <div class="form-group" id="group-email">
+              <label for="email">Email Address <span class="required">*</span></label>
+              <input type="email" id="email" name="email" placeholder="e.g. priya@example.com" required>
+              <div class="error-msg">Please enter a valid email address</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group" id="group-phone">
+              <label for="phone">Phone Number <span style="font-weight:400;color:var(--text-muted);">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="e.g. +91 98765 43210">
+            </div>
+            <div class="form-group" id="group-age">
+              <label for="age">Age <span class="required">*</span></label>
+              <input type="number" id="age" name="age" min="16" placeholder="e.g. 24" required>
+              <div class="error-msg" id="age-error-msg">Please enter your age</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group" id="group-gender">
+              <label>Gender <span class="required">*</span></label>
+              <div class="custom-select" id="custom-gender-select">
+                <div class="select-selected">Select gender</div>
+                <div class="select-items select-hide">
+                  <div data-val="Male">Male</div>
+                  <div data-val="Female">Female</div>
+                  <div data-val="Prefer Not To Say">Prefer Not To Say</div>
+                  <div data-val="Other">Other</div>
+                </div>
+              </div>
+              <input type="hidden" id="gender" name="gender" value="">
+              <div class="error-msg">Please select your gender</div>
+            </div>
+            <div class="form-group" id="group-country">
+              <label for="country">Country <span class="required">*</span></label>
+              <input type="text" id="country" name="country" placeholder="e.g. United States of America" required>
+              <div class="error-msg">Please enter your country</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group" id="group-price30From">
+              <label for="price30From">Price of 30s Reel (Starting From) <span class="required">*</span></label>
+              <input type="text" id="price30From" name="price30From" placeholder="e.g. $50" required>
+              <div class="error-msg">Please enter starting price</div>
+            </div>
+            <div class="form-group" id="group-price30Till">
+              <label for="price30Till">Price of 30s Reel (Till)</label>
+              <input type="text" id="price30Till" name="price30Till" placeholder="e.g. $150">
+            </div>
+          </div>
+          <div class="field-note" style="margin-top: -10px; margin-bottom: 20px;">
+            <span class="note-icon" style="display:flex;align-items:center;margin-top:2px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span>
+            <span>Leave blank if your pricing is flexible or open to negotiation.</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group" id="group-price60From">
+              <label for="price60From">Price of 60s Reel (Starting From) <span class="required">*</span></label>
+              <input type="text" id="price60From" name="price60From" placeholder="e.g. $100" required>
+              <div class="error-msg">Please enter starting price</div>
+            </div>
+            <div class="form-group" id="group-price60Till">
+              <label for="price60Till">Price of 60s Reel (Till)</label>
+              <input type="text" id="price60Till" name="price60Till" placeholder="e.g. $250">
+            </div>
+          </div>
+          <div class="field-note" style="margin-top: -10px; margin-bottom: 30px;">
+            <span class="note-icon" style="display:flex;align-items:center;margin-top:2px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span>
+            <span>Leave blank if your pricing is flexible or open to negotiation.</span>
+          </div>
+
+                    <div class="form-row">
+            <div class="form-group" id="group-social1">
+              <label for="social1">Social Media Link 1 <span class="required">*</span></label>
+              <input type="url" id="social1" name="social1" placeholder="e.g. Instagram URL" required>
+              <div class="error-msg">Please enter a valid URL</div>
+            </div>
+            <div class="form-group" id="group-social2">
+              <label for="social2">Social Media Link 2</label>
+              <input type="url" id="social2" name="social2" placeholder="e.g. TikTok URL">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group" id="group-social3">
+              <label for="social3">Social Media Link 3</label>
+              <input type="url" id="social3" name="social3" placeholder="e.g. YouTube URL">
+            </div>
+            <div class="form-group" id="group-portfolio">
+              <label for="portfolio" style="display:flex;align-items:center;gap:6px;">Portfolio Link <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></label>
+              <input type="url" id="portfolio" name="portfolio" placeholder="e.g. Link to your work">
+            </div>
+          </div>
+
+          <div class="form-group" id="group-notes">
+            <label for="notes">Additional Notes</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Anything you want to share about yourself..."></textarea>
+          </div>
+<button type="button" class="btn btn-primary btn-submit" id="btnSubmitForm" onclick="submitForm()" style="width: 100%;">
+            Submit Application
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- ==================== STEP 5: SUCCESS ==================== -->
+        <div class="step-section success-section" data-step="5">
+          <div class="success-checkmark">
+            <svg viewBox="0 0 24 24"><path class="check-path" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h2>Application Submitted!</h2>
+          <p>Thank you for applying to Idyll Productions. Our team will review your application and get back to you if your profile matches our requirements.</p>
+          <div class="email-notice">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            A confirmation email has been sent to your inbox
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Footer Link -->
+    <footer style="text-align: center; margin-top: 32px; padding-bottom: 40px;">
+      <a href="https://idyllproductions.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text-secondary); text-decoration: none; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; transition: color 0.2s ease;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        Visit IdyllProductions.com
+      </a>
+    </footer>
+
+  </div>
+
+  <script>
+    
+    // Custom Select Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const selected = document.querySelector('.select-selected');
+      const items = document.querySelector('.select-items');
+      const hiddenInput = document.getElementById('gender');
+
+      if(selected && items && hiddenInput) {
+        selected.addEventListener('click', function(e) {
+          e.stopPropagation();
+          items.classList.toggle('select-hide');
+        });
+
+        items.querySelectorAll('div').forEach(item => {
+          item.addEventListener('click', function(e) {
+            selected.textContent = this.textContent;
+            selected.classList.add('has-value');
+            hiddenInput.value = this.getAttribute('data-val');
+            items.classList.add('select-hide');
+            document.getElementById('group-gender').classList.remove('error');
+          });
+        });
+
+        document.addEventListener('click', function() {
+          items.classList.add('select-hide');
+        });
+      }
+    });
+
+    let currentStep = 0;
+    let isSubmitting = false;
+
+    function goToStep(step) {
+      document.querySelectorAll('.step-section').forEach(s => s.classList.remove('active'));
+      const target = document.querySelector(`.step-section[data-step="${step}"]`);
+      if (target) {
+        target.classList.add('active');
+        target.style.animation = 'none';
+        target.offsetHeight; 
+        target.style.animation = '';
+      }
+      currentStep = step;
+      
+      const particles = document.getElementById('particles-bg');
+      if (particles) {
+        particles.style.display = step === 0 ? 'block' : 'none';
+      }
+    }
+
+    function validateStep1() {
+      let valid = true;
+      const testName = document.getElementById('fullName').value.trim().length > 0;
+      if (!testName) {
+        document.getElementById('group-fullName').classList.add('error');
+        valid = false;
+      } else {
+        document.getElementById('group-fullName').classList.remove('error');
+      }
+
+      const testEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value);
+      if (!testEmail) {
+        document.getElementById('group-email').classList.add('error');
+        valid = false;
+      } else {
+        document.getElementById('group-email').classList.remove('error');
+      }
+
+      const gender = document.getElementById('gender').value;
+      if (!gender) {
+        document.getElementById('group-gender').classList.add('error');
+        valid = false;
+      } else {
+        document.getElementById('group-gender').classList.remove('error');
+      }
+
+      const ageVal = document.getElementById('age').value;
+      const ageGroup = document.getElementById('group-age');
+      const ageError = document.getElementById('age-error-msg');
+      if (!ageVal) {
+        ageError.textContent = 'Please enter your age';
+        ageGroup.classList.add('error');
+        valid = false;
+      } else if (parseInt(ageVal) < 16) {
+        ageError.textContent = 'You must be at least 16';
+        ageGroup.classList.add('error');
+        valid = false;
+      } else {
+        ageGroup.classList.remove('error');
+      }
+
+      const reqFields = ['country', 'price30From', 'price60From', 'social1'];
+      reqFields.forEach(f => {
+        const val = document.getElementById(f).value.trim();
+        if (!val) {
+          document.getElementById('group-' + f).classList.add('error');
+          valid = false;
+        } else {
+          document.getElementById('group-' + f).classList.remove('error');
+        }
+      });
+      return valid;
+    }
+
+    document.querySelectorAll('input, select, textarea').forEach(el => {
+      el.addEventListener('input', () => {
+        const group = el.closest('.form-group');
+        if (group) group.classList.remove('error');
+      });
+      el.addEventListener('change', () => {
+        const group = el.closest('.form-group');
+        if (group) group.classList.remove('error');
+      });
+    });
+
+    async function submitForm() {
+      if (!validateStep1()) return;
+      if (isSubmitting) return;
+      isSubmitting = true;
+
+      const btnSubmit = document.getElementById('btnSubmitForm');
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = '<span class="spinner"></span> Submitting...';
+
+      const formData = new FormData();
+      formData.append('fullName', document.getElementById('fullName').value);
+      formData.append('email', document.getElementById('email').value);
+      formData.append('phone', document.getElementById('phone').value);
+      formData.append('gender', document.getElementById('gender').value);
+      formData.append('age', document.getElementById('age').value);
+      formData.append('country', document.getElementById('country').value);
+      formData.append('price30From', document.getElementById('price30From').value);
+      formData.append('price30Till', document.getElementById('price30Till').value);
+      formData.append('price60From', document.getElementById('price60From').value);
+      formData.append('price60Till', document.getElementById('price60Till').value);
+      formData.append('social1', document.getElementById('social1').value);
+      formData.append('social2', document.getElementById('social2').value);
+      formData.append('social3', document.getElementById('social3').value);
+      formData.append('portfolio', document.getElementById('portfolio').value);
+      formData.append('notes', document.getElementById('notes').value);
+
+      try {
+        const response = await fetch('/api/submit', {
+          method: 'POST',
+          body: formData,
+        });
+        const result = await response.json();
+        if (response.ok && result.success) {
+          goToStep(5);
+        } else {
+          throw new Error(result.error || 'Submission failed');
+        }
+      } catch (error) {
+        console.error('Submit error:', error);
+        alert('Something went wrong. Please try again.\n\nError: ' + error.message);
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `Submit Application <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+        isSubmitting = false;
+      }
+    }
+  </script>
+
+  <!-- Modals -->
+  <dialog id="aboutDialog" class="custom-dialog">
+    <div class="dialog-content">
+      <h2 style="font-size: 22px; margin-bottom: 16px;">About Our UGC Creator Network</h2>
+      <p>Welcome to <strong>IDYLL Productions</strong>.</p>
+      <p>We are a video editing agency that is now expanding into <strong>UGC (User-Generated Content) campaigns</strong>. We already work with brands, and more partnerships are being added regularly.</p>
+      <p>To make the collaboration process faster and more efficient, we're building a network of talented creators. Instead of searching for creators every time a brand needs a campaign, we'll already have your profile and details on file. This allows us to quickly find the best match for each project and contact you directly whenever a suitable opportunity becomes available.</p>
+      <p>Your information is <strong>not</strong> shared with brands or third parties without a valid business reason related to a collaboration. We take your privacy seriously, and all submitted information is stored securely using appropriate security measures. Your data is only used to evaluate your suitability for future campaigns and to contact you about relevant opportunities.</p>
+      <p>Please note that submitting your information does <strong>not</strong> guarantee campaign selection. Every brand has different requirements, and creators are chosen based on the campaign's specific needs. If you're a good fit for a project, we'll reach out to you using the contact details you provide.</p>
+      <p style="margin-bottom: 24px;">Thank you for taking the time to join our creator network. We appreciate your interest in working with IDYLL Productions, and we look forward to the opportunity to collaborate with you in the future.</p>
+      <button class="btn btn-primary" onclick="document.getElementById('aboutDialog').close()">Got it, thanks!</button>
+    </div>
+  </dialog>
+
+  <dialog id="contactDialog" class="custom-dialog">
+    <div class="dialog-content" style="text-align: center;">
+      <h2 style="font-size: 24px; margin-bottom: 16px; color: var(--text-primary);">Contact Our Team</h2>
+      <p style="margin-bottom: 32px;">If you have any questions or require assistance, please feel free to reach out to our executive team directly.</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 32px; text-align: center;">
+        
+        <!-- Executive 1 -->
+        <div>
+          <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Chief Executive Officer</p>
+          <a href="mailto:harshidyllproductions@gmail.com" style="font-size: 16px; font-weight: 600; color: var(--orange-primary); text-decoration: none;">harshidyllproductions@gmail.com</a>
+        </div>
+
+        <!-- Executive 2 -->
+        <div>
+          <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Chief Operation Officer</p>
+          <a href="mailto:rohitidyllproductions@gmail.com" style="font-size: 16px; font-weight: 600; color: var(--orange-primary); text-decoration: none;">rohitidyllproductions@gmail.com</a>
+        </div>
+
+        <!-- Executive 3 -->
+        <div>
+          <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Chief Sales Officer</p>
+          <a href="mailto:zadaidyllproductions@gmail.com" style="font-size: 16px; font-weight: 600; color: var(--orange-primary); text-decoration: none;">zadaidyllproductions@gmail.com</a>
+        </div>
+
+      </div>
+
+      <button class="btn btn-primary" onclick="document.getElementById('contactDialog').close()" style="width: 100%;">Close</button>
+    </div>
+  </dialog>
+
+
+  <!-- WebGL Particles Script -->
+  <script type="module" src="/particles.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "idyll-hiring-form",
+  "version": "1.0.0",
+  "description": "Sales Executive Hiring Form - Idyll Productions",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'Build successful'"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.21.0",
+    "google-auth-library": "^10.9.1",
+    "google-spreadsheet": "^5.3.0",
+    "multer": "^1.4.5-lts.1",
+    "resend": "^4.0.0",
+    "serverless-http": "^4.0.0"
+  }
+}

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UGC Creator Application – Idyll Productions</title>
+  <meta name="description" content="Apply to join the Idyll Productions UGC Creator Network.">
+  <link rel="stylesheet" href="/ugc.css">
+  <link rel="icon" href="https://res.cloudinary.com/dxd79mrse/image/upload/v1781445552/idyll-productions-orange_q6o4ap.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Background Animated Elements -->
+  <div class="bg-mesh">
+    <div class="mesh-blob blob-1"></div>
+    <div class="mesh-blob blob-2"></div>
+  </div>
+
+  <div class="container">
+    
+    <header class="app-header">
+      <img src="https://res.cloudinary.com/dxd79mrse/image/upload/v1781445552/idyll-productions-orange_q6o4ap.png" alt="Idyll Productions" class="logo">
+      <div class="header-badge">Creator Network</div>
+    </header>
+
+    <!-- WELCOME VIEW (Not inside form-wrapper) -->
+    <div class="welcome-container active" id="view-welcome">
+      <h1 class="welcome-title">Welcome to <span>Idyll Productions</span></h1>
+      <p class="welcome-desc">Join our exclusive network of UGC creators. Connect with premium brands, showcase your authentic voice, and get paid for doing what you love. Apply below to get started.</p>
+      
+      <button type="button" class="btn btn-primary btn-large btn-animate" onclick="startApplication()">
+        <span>Start Application</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- FORM WRAPPER (Hidden initially) -->
+    <div class="form-wrapper" id="view-form-wrapper">
+      
+      <!-- FORM VIEW -->
+      <div class="view-section" id="view-form">
+        <div class="form-header-title">Creator Details</div>
+        
+        <form id="ugcForm" novalidate>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullName">Full Name <span class="req">*</span></label>
+              <input type="text" id="fullName" name="fullName" placeholder="e.g. Alex Johnson" required>
+              <div class="error-msg">Please enter your full name</div>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="e.g. alex@example.com" required>
+              <div class="error-msg">Please enter a valid email</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="age">Age <span class="req">*</span></label>
+              <input type="number" id="age" name="age" min="16" max="99" placeholder="e.g. 24" required>
+              <div class="error-msg">Please enter a valid age</div>
+            </div>
+            
+            <div class="form-group">
+              <label for="gender">Gender <span class="req">*</span></label>
+              <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <div class="error-msg">Please select your gender</div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="whatsapp">WhatsApp / Mobile <span class="opt">(Optional)</span></label>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="e.g. +1 234 567 890">
+            </div>
+            <div class="form-group">
+              <label for="address">Location <span class="opt">(Optional)</span></label>
+              <input type="text" id="address" name="address" placeholder="City, Country">
+            </div>
+          </div>
+
+          <!-- DYNAMIC SOCIAL MEDIA LINKS -->
+          <div class="dynamic-group" id="social-group">
+            <label>Social Media Links <span class="req">*</span></label>
+            <div class="dynamic-list" id="social-list">
+              <div class="dynamic-item">
+                <input type="url" name="socialLinks[]" placeholder="https://instagram.com/yourhandle" class="dynamic-input" required>
+                <div class="error-msg">Please provide at least one valid link</div>
+              </div>
+            </div>
+            <button type="button" class="btn-add" onclick="addDynamicField('social-list', 'socialLinks[]', 'https://tiktok.com/@yourhandle')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Another Link
+            </button>
+          </div>
+
+          <!-- DYNAMIC PORTFOLIO LINKS -->
+          <div class="dynamic-group" id="portfolio-group">
+            <label>Portfolio Links <span class="req">*</span></label>
+            <div class="dynamic-list" id="portfolio-list">
+              <div class="dynamic-item">
+                <input type="url" name="portfolioLinks[]" placeholder="Link to your past work / drive" class="dynamic-input" required>
+                <div class="error-msg">Please provide at least one valid link</div>
+              </div>
+            </div>
+            <button type="button" class="btn-add" onclick="addDynamicField('portfolio-list', 'portfolioLinks[]', 'Link to another project')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Another Link
+            </button>
+          </div>
+
+          <!-- PRICING -->
+          <div class="pricing-section">
+            <div class="pricing-title">Estimated Starting Rates</div>
+            <p class="pricing-sub">Please enter numbers only (e.g., 50, 100). Do not include currency symbols.</p>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="price30">30-Second UGC Video <span class="req">*</span></label>
+                <div class="input-icon-wrap">
+                  <span class="currency-icon">$</span>
+                  <input type="number" id="price30" name="price30" placeholder="0" class="pl-32" required min="0">
+                </div>
+                <div class="error-msg">Please enter a valid amount</div>
+              </div>
+              
+              <div class="form-group">
+                <label for="price60">60-Second UGC Video <span class="req">*</span></label>
+                <div class="input-icon-wrap">
+                  <span class="currency-icon">$</span>
+                  <input type="number" id="price60" name="price60" placeholder="0" class="pl-32" required min="0">
+                </div>
+                <div class="error-msg">Please enter a valid amount</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" onclick="backToWelcome()">Back</button>
+            <button type="button" class="btn btn-primary btn-animate" id="btnSubmit" onclick="submitApplication()">
+              <span>Submit Application</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- SUCCESS VIEW -->
+      <div class="view-section" id="view-success">
+        <div class="success-icon-wrap">
+          <svg viewBox="0 0 24 24" class="success-svg"><path class="check-path" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h2 class="success-title">Application Received!</h2>
+        <p class="success-desc">Thank you for your interest in joining Idyll Productions.<br>Our team will carefully review your application and get in touch if your profile matches our upcoming campaigns.</p>
+        <button type="button" class="btn btn-secondary mt-24" onclick="location.reload()">Back to Home</button>
+      </div>
+
+    </div>
+    
+    <footer class="app-footer">
+      © 2026 Idyll Productions. All rights reserved.
+    </footer>
+
+  </div>
+
+  <script>
+    // Navigation
+    function startApplication() {
+      document.getElementById('view-welcome').style.display = 'none';
+      const wrapper = document.getElementById('view-form-wrapper');
+      wrapper.style.display = 'block';
+      
+      document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+      const formView = document.getElementById('view-form');
+      
+      // small delay to allow display block to apply before animating opacity
+      setTimeout(() => {
+        formView.classList.add('active');
+      }, 50);
+    }
+
+    function backToWelcome() {
+      document.getElementById('view-form-wrapper').style.display = 'none';
+      document.getElementById('view-welcome').style.display = 'flex';
+      
+      document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+    }
+
+    function showSuccess() {
+      document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+      const successView = document.getElementById('view-success');
+      setTimeout(() => {
+        successView.classList.add('active');
+      }, 50);
+    }
+
+    // Dynamic Fields
+    function addDynamicField(containerId, inputName, placeholderTxt) {
+      const container = document.getElementById(containerId);
+      
+      const item = document.createElement('div');
+      item.className = 'dynamic-item animated-entry';
+      
+      const input = document.createElement('input');
+      input.type = 'url';
+      input.name = inputName;
+      input.className = 'dynamic-input';
+      input.placeholder = placeholderTxt;
+      input.required = true;
+      
+      const btnRemove = document.createElement('button');
+      btnRemove.type = 'button';
+      btnRemove.className = 'btn-remove';
+      btnRemove.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+      btnRemove.onclick = function() {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(-10px)';
+        setTimeout(() => item.remove(), 200);
+      };
+
+      item.appendChild(input);
+      item.appendChild(btnRemove);
+      container.appendChild(item);
+      
+      // Focus new input
+      setTimeout(() => input.focus(), 50);
+    }
+
+    // Validation
+    function validateForm() {
+      let isValid = true;
+      
+      // Required Text & Email & Number Inputs & Selects
+      const requiredInputs = document.querySelectorAll('#ugcForm input[required], #ugcForm select[required]');
+      requiredInputs.forEach(input => {
+        const group = input.closest('.form-group') || input.closest('.dynamic-item');
+        
+        let isFieldValid = true;
+        if (input.type === 'email') {
+          isFieldValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+        } else if (input.type === 'number') {
+          isFieldValid = input.value.trim() !== '' && !isNaN(input.value);
+        } else if (input.tagName === 'SELECT') {
+          isFieldValid = input.value !== '';
+        } else {
+          isFieldValid = input.value.trim() !== '';
+        }
+
+        if (!isFieldValid) {
+          group.classList.add('has-error');
+          isValid = false;
+        } else {
+          group.classList.remove('has-error');
+        }
+      });
+
+      return isValid;
+    }
+
+    // Clear errors on input
+    document.addEventListener('input', function(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') {
+        const group = e.target.closest('.form-group') || e.target.closest('.dynamic-item');
+        if (group) group.classList.remove('has-error');
+      }
+    });
+    
+    document.addEventListener('change', function(e) {
+      if (e.target.tagName === 'SELECT') {
+        const group = e.target.closest('.form-group');
+        if (group) group.classList.remove('has-error');
+      }
+    });
+
+    // Submission
+    async function submitApplication() {
+      if (!validateForm()) {
+        // Scroll to first error
+        const firstError = document.querySelector('.has-error');
+        if (firstError) {
+          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+
+      const btnSubmit = document.getElementById('btnSubmit');
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = '<span class="spinner"></span> <span>Submitting...</span>';
+
+      // Gather Data
+      const getValues = (name) => {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        return Array.from(inputs).map(inp => inp.value).filter(v => v.trim() !== '');
+      };
+
+      const payload = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        age: document.getElementById('age').value,
+        gender: document.getElementById('gender').value,
+        whatsapp: document.getElementById('whatsapp').value,
+        address: document.getElementById('address').value,
+        socialLinks: getValues('socialLinks[]'),
+        portfolioLinks: getValues('portfolioLinks[]'),
+        price30: document.getElementById('price30').value,
+        price60: document.getElementById('price60').value
+      };
+
+      try {
+        const response = await fetch('/api/submit-ugc', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          showSuccess();
+        } else {
+          throw new Error(result.error || 'Submission failed');
+        }
+      } catch (error) {
+        console.error('Submission Error:', error);
+        alert('An error occurred while submitting your application. Please try again.');
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<span>Submit Application</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+      }
+    }
+  </script>
+</body>
+</html>
