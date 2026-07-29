@@ -323,27 +323,31 @@
       btnSubmit.disabled = true;
       btnSubmit.innerHTML = '<span class="spinner"></span> Submitting...';
 
-      const formData = new FormData();
-      formData.append('fullName', document.getElementById('fullName').value);
-      formData.append('email', document.getElementById('email').value);
-      formData.append('phone', document.getElementById('phone').value);
-      formData.append('gender', document.getElementById('gender').value);
-      formData.append('age', document.getElementById('age').value);
-      formData.append('country', document.getElementById('country').value);
-      formData.append('price30From', document.getElementById('price30From').value);
-      formData.append('price30Till', document.getElementById('price30Till').value);
-      formData.append('price60From', document.getElementById('price60From').value);
-      formData.append('price60Till', document.getElementById('price60Till').value);
-      formData.append('social1', document.getElementById('social1').value);
-      formData.append('social2', document.getElementById('social2').value);
-      formData.append('social3', document.getElementById('social3').value);
-      formData.append('portfolio', document.getElementById('portfolio').value);
-      formData.append('notes', document.getElementById('notes').value);
+      const payload = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        gender: document.getElementById('gender').value,
+        age: document.getElementById('age').value,
+        country: document.getElementById('country').value,
+        price30From: document.getElementById('price30From').value,
+        price30Till: document.getElementById('price30Till').value,
+        price60From: document.getElementById('price60From').value,
+        price60Till: document.getElementById('price60Till').value,
+        social1: document.getElementById('social1').value,
+        social2: document.getElementById('social2').value,
+        social3: document.getElementById('social3').value,
+        portfolio: document.getElementById('portfolio').value,
+        notes: document.getElementById('notes').value
+      };
 
       try {
         const response = await fetch('/api/submit', {
           method: 'POST',
-          body: formData,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload),
         });
         const result = await response.json();
         if (response.ok && result.success) {
