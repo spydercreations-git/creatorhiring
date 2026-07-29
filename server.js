@@ -11,7 +11,8 @@ const app = express();
 const PORT = 3000;
 
 // Resend setup
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 // Middleware
 app.use(cors());
@@ -243,20 +244,23 @@ app.post(['/api/submit', '/submit'], upload.single('photo'), async (req, res) =>
     
 
     // 2. Send confirmation email to applicant
-    const confirmEmail = await resend.emails.send({
-      from: 'Idyll Productions <hiring@idyllproductions.work>',
-      to: [data.email],
-      subject: 'Application Received – UGC Creator',
-      html: buildConfirmationEmailHTML(data.fullName),
-    });
-
-    console.log('Confirmation email sent:', confirmEmail);
+    let confirmEmail = null;
+    if (resend) {
+      confirmEmail = await resend.emails.send({
+        from: 'Idyll Productions <hiring@idyllproductions.work>',
+        to: [data.email],
+        subject: 'Application Received – UGC Creator',
+        html: buildConfirmationEmailHTML(data.fullName),
+      });
+      console.log('Confirmation email sent:', confirmEmail);
+    } else {
+      console.warn('RESEND_API_KEY is missing. Skipping confirmation email.');
+    }
 
     res.json({ 
       success: true, 
       message: 'Application submitted successfully',
-      
-      confirmEmailId: confirmEmail.data?.id,
+      confirmEmailId: confirmEmail?.data?.id,
     });
 
   } catch (error) {
