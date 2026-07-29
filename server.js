@@ -4,7 +4,6 @@ const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
 const { Resend } = require('resend');
-const { GoogleSpreadsheet } = require('google-spreadsheet');
 const { JWT } = require('google-auth-library');
 
 const app = express();
@@ -177,6 +176,7 @@ app.post(['/api/submit', '/submit'], upload.single('photo'), async (req, res) =>
           scopes: ['https://www.googleapis.com/auth/spreadsheets'],
         });
 
+        const { GoogleSpreadsheet } = await import('google-spreadsheet');
         const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, serviceAccountAuth);
         
         await doc.loadInfo(); 
